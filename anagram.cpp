@@ -2,6 +2,15 @@
 #include <algorithm>
 #define NO_OF_CHARS_ASCII 256
 
+bool is_equal(int array1[], int array2[])
+{
+    for (int i = 0; i < NO_OF_CHARS_ASCII; i++)
+    {
+        if (array1[i] != array2[i]) return false;
+    }
+    return true;
+}
+
 std::string ToLowerAndRemoveSpaces(const std::string& word)
 {
     std::string temp_word = word;
@@ -30,12 +39,8 @@ bool Anagram::WordPairIsAnagram(const std::string& word1, const std::string& wor
         letter_frequency_array1[modified_word1[i]]++;
         letter_frequency_array2[modified_word2[i]]++;
     }
-
-    for (int i = 0; i < NO_OF_CHARS_ASCII; i++)
-    {
-        if (letter_frequency_array1[i] != letter_frequency_array2[i]) return false;
-    }
-    return true;
+    
+    return is_equal(letter_frequency_array1, letter_frequency_array2);
 }
 
 std::vector<std::string> Anagram::SelectAnagrams(
